@@ -14,7 +14,7 @@ protocol PickerColumnViewDelegate : NSObjectProtocol {
 
 class PickerColumnView: UIView {
 
-    var componentIdx:Int?
+    var componentIdx:Int = 0
     var datas:NSArray
     
     var upView:UIView!
@@ -135,14 +135,6 @@ extension PickerColumnView:UITableViewDelegate,UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         tableView.separatorStyle = .none
         let cell = tableView.dequeueReusableCell(withIdentifier: "PickerColumnCell") as! PickerColumnCell
-        let row = indexPath.row - self.offsetCount
-        
-        if indexPath.row < self.offsetCount || row >= self.datas.count {
-            cell.dateLabel.text = ""
-        }else{
-            cell.dateLabel.text = self.datas[row] as? String
-        }
-        
         if tableView == self.centerTableView {
             cell.dateLabel.textColor = UIColor.white
             cell.dateLabel.font = UIFont.boldSystemFont(ofSize: 16)
@@ -150,6 +142,7 @@ extension PickerColumnView:UITableViewDelegate,UITableViewDataSource {
             cell.dateLabel.textColor = UIColor(red: 212/255.0, green: 213/255.0, blue: 220/255.0, alpha: 1.0)
             cell.dateLabel.font = UIFont.boldSystemFont(ofSize: 14.5)
         }
+        cell.showData(self.datas, indexPath: indexPath, offsetCount: offsetCount, component: componentIdx)
         return cell
     }
     

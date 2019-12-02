@@ -18,10 +18,10 @@ class ViewController: UIViewController {
         
         self.datas1 = ["2009年", "2010年", "2011年", "2012年", "2013年", "2014年", "2015年", "2016年", "2017年", "2018年","2019年"]
         self.datas2=["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"]
-        let pickerView = PickerView(frame: CGRect(x: 10, y: 50, width: 200, height: 225))
+        let pickerView = PickerView(frame: CGRect(x: 10, y: 50, width: 281, height: 195))
         pickerView.dataSource = self
         pickerView.delegate = self
-        pickerView.rowHeight = 45
+        pickerView.rowHeight = 39
         pickerView.backgroundColor = UIColor(red: 61/255.0, green: 66/255.0, blue: 109/255.0, alpha: 1.0)
         self.view.addSubview(pickerView)
         let idx = datas1.count - 1
@@ -54,7 +54,7 @@ extension ViewController:PickerViewDelegate,PickerViewDataSource {
         if component == 1 {
             print("选中的行数据：",datas2[row])
             if row > 10 {
-                pickerView.selectRow(row: 8, inComponent: 1, animated: true)
+                pickerView.selectRow(row: 10, inComponent: 1, animated: true)
             }
         }
     }

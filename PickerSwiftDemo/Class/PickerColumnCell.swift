@@ -24,6 +24,21 @@ class PickerColumnCell: UITableViewCell {
         self.backgroundColor = UIColor.clear
     }
     
+    func showData(_ datas:NSArray,indexPath:IndexPath,offsetCount:Int,component:Int){
+        let row = indexPath.row - offsetCount
+        if component == 0 {
+            self.dateLabel.frame = CGRect(x: 46.5, y: 0, width: 89.5, height: self.contentView.frame.height)
+        }else if component == 1 {
+            self.dateLabel.frame = CGRect(x: 18, y: 0, width: 64, height: self.contentView.frame.height)
+        }
+        
+        if indexPath.row < offsetCount || row >= datas.count {
+            self.dateLabel.text = ""
+        }else{
+            self.dateLabel.text = datas[row] as? String
+        }
+    }
+    
     func transformWithAngle(angle:CGFloat,scale:CGFloat){
         var transform = CATransform3DIdentity
         transform = CATransform3DRotate(transform, angle, 1, 0, 0)
@@ -33,7 +48,6 @@ class PickerColumnCell: UITableViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.dateLabel.frame = self.contentView.bounds
     }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

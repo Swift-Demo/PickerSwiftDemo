@@ -69,9 +69,11 @@ class PickerView: UIView {
         let width = self.frame.size.width / CGFloat(numberOfComponents)
         let row = self.dataSource?.pickerView(self, numberOfRowsInComponent: componentIdx) ?? 0
         var datas = [String]()
+//        var datas = [Dictionary<String, String>]()
+//        var dic = ["title":"","component":String(componentIdx)]
         var title = ""
         for idx in 0..<row {
-            
+//            dic["title"] = self.delegate?.pickerView(self, titleForRow: idx, forComponent: componentIdx) ?? "" as String
             title = self.delegate?.pickerView(self, titleForRow: idx, forComponent: componentIdx) ?? ""
             datas.append(title)
         }
@@ -139,6 +141,6 @@ class PickerView: UIView {
 extension PickerView:PickerColumnViewDelegate {
     
     func pickerView(pickerView: PickerColumnView, didSelectRow row: Int) {
-        self.delegate?.pickerView(self, didSelectRow: row, forComponent: pickerView.componentIdx!)
+        self.delegate?.pickerView(self, didSelectRow: row, forComponent: pickerView.componentIdx)
     }
 }
